@@ -1,5 +1,5 @@
 import uuid from 'uuid'
-import {Buffer} from 'buffer'
+import { Buffer } from 'buffer'
 
 const pad = '0000000000000000'
 
@@ -11,12 +11,12 @@ const create = (ts) => {
   const hexId = ts + random
   let id = Buffer.from(hexId, 'hex').toString('base64')
   id = id.replace(/\+/g, '-')
-  id = id.replace(/\//g, '_')
+  id = id.replace(/\//g, '.')
   return id
 }
 
 const getTimestamp = (id) => {
-  id = id.replace(/_/g, '/')
+  id = id.replace(/\./g, '/')
   id = id.replace(/-/g, '+')
   const hexId = Buffer.from(id, 'base64').toString('hex')
   const tsHex = hexId.substring(0, 16)
