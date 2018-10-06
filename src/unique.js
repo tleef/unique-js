@@ -1,5 +1,5 @@
 import uuid from 'uuid'
-import { Buffer } from 'buffer'
+import b64 from '@tleef/b64-js'
 
 const pad = '0000000000000000'
 
@@ -9,7 +9,7 @@ const create = (ts) => {
   ts = pad.substring(0, 16 - ts.length) + ts
   const random = uuid.v4().replace(/-/g, '')
   const hexId = ts + random
-  let id = Buffer.from(hexId, 'hex').toString('base64')
+  let id = b64.from(hexId, 'hex')
   id = id.replace(/\+/g, '-')
   id = id.replace(/\//g, '.')
   return id
@@ -18,7 +18,7 @@ const create = (ts) => {
 const getTimestamp = (id) => {
   id = id.replace(/\./g, '/')
   id = id.replace(/-/g, '+')
-  const hexId = Buffer.from(id, 'base64').toString('hex')
+  const hexId = b64.to(id, 'hex')
   const tsHex = hexId.substring(0, 16)
   const ts = parseInt(tsHex, 16)
   return new Date(ts)

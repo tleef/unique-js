@@ -31,7 +31,7 @@ describe('unique', () => {
       const id = create(new Date(0))
       uuid.v4.restore()
 
-      expect(id).to.equal('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
+      expect(id).to.equal('--------------------------------')
     })
   })
 
