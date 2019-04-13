@@ -4,8 +4,8 @@ import * as uuid from "uuid";
 const pad = "0000000000000000";
 
 const create = (ts?: Date): string => {
-  ts = ts || (new Date());
-  let sts = (new Date(ts)).getTime().toString(16);
+  ts = ts || new Date();
+  let sts = new Date(ts).getTime().toString(16);
   sts = pad.substring(0, 16 - sts.length) + sts;
   const random = uuid.v4().replace(/-/g, "");
   const hexId = sts + random;
@@ -26,7 +26,4 @@ const getTimestamp = (id: string): Date => {
 
 export default create;
 
-export {
-  create,
-  getTimestamp,
-};
+export { create, getTimestamp };
