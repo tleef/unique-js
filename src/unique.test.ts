@@ -31,7 +31,7 @@ describe("unique", () => {
       // @ts-ignore
       uuid.v4.restore();
 
-      expect(id).to.equal("--------------------------------");
+      expect(id).to.equal("");
     });
   });
 
@@ -56,7 +56,7 @@ describe("unique", () => {
       const id = create(now);
       const ts = getTimestamp(id);
 
-      expect(ts.getTime()).to.equal(now.getTime());
+      expect(ts.getTime()).to.equal(Math.floor(now.getTime() / 1000) * 1000);
     });
   });
 
